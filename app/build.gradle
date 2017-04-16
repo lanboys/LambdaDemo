@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+//dagger  ButterKnife 8.0.1
+//apply plugin: 'com.neenbedankt.android-apt'
+//dagger  ButterKnife 8.0.1
+
+//realm
+ apply plugin: 'realm-android'
+//realm
+
+apply plugin: 'me.tatarka.retrolambda'
+
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.bing.lan.lambdademo"
+        minSdkVersion 24
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+//        jackOptions {
+//            enabled true
+//        }
+
+
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    testCompile 'junit:junit:4.12'
+
+    // butter knife
+    compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+    //apt "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+
+    // dependency injector
+    compile 'com.google.dagger:dagger:2.7'
+    provided 'com.google.dagger:dagger-compiler:2.7'
+    // provided 'org.glassfish:javax.annotation:10.0-b28'
+
+}
